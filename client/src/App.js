@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Customer from "./components/Customer";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
@@ -20,33 +20,18 @@ const styles = makeStyles((theme) => ({
 }));
 
 const App = () => {
-  const customers = [
-    {
-      id: 1,
-      image: "http://placeimg.com/64/64/1",
-      name: "홍길동",
-      birthday: "961222",
-      gender: "남자",
-      job: "대학생",
-    },
-    {
-      id: 2,
-      image: "http://placeimg.com/64/64/2",
-      name: "문자두",
-      birthday: "961222",
-      gender: "여자",
-      job: "대학생",
-    },
-    {
-      id: 3,
-      image: "http://placeimg.com/64/64/3",
-      name: "문 용",
-      birthday: "961222",
-      gender: "남자",
-      job: "프로게이머",
-    },
-  ];
+  const [customers, setCustomers] = useState([]);
 
+  useEffect(() => {
+    callApi()
+      .then((res) => setCustomers(res))
+      .catch((err) => console.log(err));
+  }, []);
+  const callApi = async () => {
+    const response = await fetch("/api/customers");
+    const body = await response.json();
+    return body;
+  };
   const classes = styles();
   return (
     <Paper className={classes.root}>
