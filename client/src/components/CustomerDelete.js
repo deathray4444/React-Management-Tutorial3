@@ -35,19 +35,18 @@ const CustomerDelete = (props) => {
           <Typography>선택한 고객 정보가 삭제됩니다.</Typography>
         </DialogContent>
         <DialogActions></DialogActions>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={(e) => {
-              deleteCustomer(props.id);
-            }}
-          >
-            삭제
-          </Button>
-          <Button variant="outlined" color="primary" onClick={handleClose}>
-            닫기
-          </Button>
-        </DialogActions>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={(e) => {
+            deleteCustomer(props.id);
+          }}
+        >
+          삭제
+        </Button>
+        <Button variant="outlined" color="primary" onClick={handleClose}>
+          닫기
+        </Button>
       </Dialog>
     </div>
   );
